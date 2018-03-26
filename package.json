@@ -1,7 +1,7 @@
 {
-  "name": "nodescripts",
+  "name": "ipinformer",
   "version": "1.0.0",
-  "description": "Node Scripts",
+  "description": "IP Informer",
   "private": true,
   "scripts": {
     "start": "node server.js",
