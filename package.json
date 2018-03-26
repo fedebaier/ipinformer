@@ -1,0 +1,20 @@
+{
+  "name": "nodescripts",
+  "version": "1.0.0",
+  "description": "Node Scripts",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "start-dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "maxmind": "^2.5.0",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.2"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
+  }
+}
