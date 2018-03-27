@@ -27,6 +27,8 @@ app.get('/ip-info', (req, res) => {
   res.send(info);
 });
 
-app.listen(3333, () => {
-  console.log('We are live on 3333');
+const port = process.env.PORT || 3333;
+
+app.listen(port, () => {
+  console.log('We are live on ', port);
 });
