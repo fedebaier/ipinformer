@@ -1,7 +1,7 @@
 {
   "name": "ipinformer",
   "version": "1.0.0",
-  "description": "IP Informer",
+  "description": "Simple API that provides country information of a given IP",
   "private": true,
   "scripts": {
     "start": "node server.js",
