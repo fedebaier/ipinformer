@@ -20,11 +20,8 @@ app.get('/ip-info', (req, res) => {
   // Load countries list
   const countryLookup = maxmind.openSync('./countries.mmdb');
 
-  // Get country info from IP
-  const info = countryLookup.get(ip);
-
-  // Send info
-  res.send(info);
+  // Return country info from IP
+  res.send(countryLookup.get(ip));
 });
 
 const port = process.env.PORT || 3333;
