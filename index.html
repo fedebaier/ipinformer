@@ -12,10 +12,23 @@
 
     body {
       font: 13px Helvetica, Arial;
+      text-align: center;
     }
 
     form {
       padding: 10px;
+    }
+
+    form input {
+      padding: 6px;
+      margin-right: .5%;
+    }
+
+    form button {
+      background: rgb(3, 87, 197);
+      color: white;
+      border: none;
+      padding: 8px;
     }
 
     #results {
@@ -30,10 +43,10 @@
 </head>
 
 <body>
-  <form id="ipForm" action="#" method="post">
+  <form id="ipForm" action="#">
     IP:
-    <input type="text" name="name" />
-    <input type="submit" value="Check" />
+    <input type="text" name="ip" />
+    <button>Check</button>
   </form>
 
   <ul id="results"></ul>
@@ -74,8 +87,9 @@
               }
 
             })
-            .fail(function (jqXHR, textStatus) {
-              $('#results').append($(`<li>`).text(`The request failed: ${textStatus}`));
+            .fail(function () {
+              $('#results').empty();
+              $('#results').append($(`<li>`).text('The request failed. Check the console.'));
             });
         } else {
           $('#results').append($(`<li>`).text('Please enter an IP to check.'));
