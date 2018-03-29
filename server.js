@@ -7,6 +7,10 @@ const express = require('express');
 const app = express();
 app.use(morgan('common'));
 
+app.get('/check-ip', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
 app.get('/ip-info', (req, res) => {
   const { clienttoken } = req.headers;
 

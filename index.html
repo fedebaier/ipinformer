@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>IP Informer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font: 13px Helvetica, Arial;
+    }
+
+    form {
+      padding: 10px;
+    }
+
+    #results {
+      list-style-type: none;
+      padding: 10px;
+    }
+
+    #results li {
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="ipForm" action="#" method="post">
+    IP:
+    <input type="text" name="name" />
+    <input type="submit" value="Check" />
+  </form>
+
+  <ul id="results"></ul>
+
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#ipForm").submit(function (event) {
+        event.preventDefault();
+        const ip = $("input:first").val();
+        $('#results').empty();
+
+        if (ip !== '') {
+          $('#results').append($(`<li>`).text('Checking...'));
+
+          // Check IP info
+          $.ajax({
+            method: "GET",
+            url: "https://ip-informer.herokuapp.com/ip-info",
+            data: { ip },
+            headers: {
+              ClientToken: "98mgUpRkJ8U3AQfFCmXG9WzDDPck2eSW"
+            }
+          })
+            .done((ipinfo) => {
+              $('#results').empty();
+
+              if (ipinfo) {
+                $('#results')
+                  .append($(`<li>`).text(`Continent: ${ipinfo.continent.names.en}`));
+                $('#results')
+                  .append($(`<li>`).text(`Country: ${ipinfo.country.names.en}`));
+                $('#results')
+                  .append($(`<li>`).text(`Registered Country: ${ipinfo.registered_country.names.en}`));
+              }
+              else {
+                $('#results').append($(`<li>`).text('No information found.'))
+              }
+
+            })
+            .fail(function (jqXHR, textStatus) {
+              $('#results').append($(`<li>`).text(`The request failed: ${textStatus}`));
+            });
+        } else {
+          $('#results').append($(`<li>`).text('Please enter an IP to check.'));
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
